@@ -7,6 +7,12 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score,f1_score,recall_score,precision_score
 
+import dagshub
+import mlflow
+
+mlflow.set_tracking_uri('https://github.com/jay-kanakia/mlflow-remote-tracking-dagshub-demo.git')
+dagshub.init(repo_owner='jay-kanakia', repo_name='mlflow-remote-tracking-dagshub-demo', mlflow=True)
+
 iris=load_iris()
 X=iris.data
 y=iris.target
@@ -35,4 +41,3 @@ with mlflow.start_run():
     mlflow.log_metric('f1_score',f1)
     mlflow.log_metric('precision_score',precision)
 
-    
